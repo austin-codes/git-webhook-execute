@@ -55,6 +55,7 @@ else {
 /**
  * Commit Current Updates
  */
+
 $output .= date("d.m.Y H:i:s") . ' Checking for updated files...' . _NL_;
 $shortstat .= shell_exec("git diff --shortstat");
 
@@ -94,9 +95,10 @@ else {
 /**
  * Push the update
  */
-$output .= date("d.m.Y H:i:s") . ' Starting push to branch: ' . $branch . '.';
-
-$output .= date("d.m.Y H:i:s") . ' Completed push to branch: ' . $branch . '.';
+$output .= date("d.m.Y H:i:s") . ' Starting push to branch: ' . $branch . '.' . _NL_;
+$push = shell_exec("git push origin $branch");
+dump($push);
+$output .= date("d.m.Y H:i:s") . ' Completed push to branch: ' . $branch . '.' . _NL_;
 
 /**
  * Pull the update
@@ -124,7 +126,7 @@ if (!empty($log)) {
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Git Exec</title>
     </head>
     <body>
         <?php echo $output; ?>
