@@ -103,6 +103,8 @@ else {
 }
 
 
+$output .= date("d.m.Y H:i:s") . ' Ending Process.' . _NL_;
+
 
 
 
