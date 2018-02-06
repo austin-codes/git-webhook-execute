@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Set up the core
  */
@@ -9,6 +10,11 @@ $incoming_ip = $_SERVER['REMOTE_ADDR'];
 $message = '';
 $log = '';
 $output = '';
+
+
+$json = file_get_contents('php://input');
+$data = json_decode($json, true);
+dump($data);
 
 
 
@@ -32,8 +38,26 @@ else {
 }
 
 
+/**
+ * Optimize images
+ */
 
 
+
+
+/**
+ * Commit Current Updates
+ */
+
+
+/**
+ * Push the update
+ */
+
+
+/**
+ * Pull the update
+ */
 
 
 
