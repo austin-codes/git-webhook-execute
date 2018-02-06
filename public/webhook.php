@@ -56,10 +56,38 @@ else {
  * Commit Current Updates
  */
 $output .= date("d.m.Y H:i:s") . ' Checking for updated files...' . _NL_;
-$output .= shell_exec("git diff --shortstat") . _NL_;
+$shortstat .= shell_exec("git diff --shortstat");
+
+if (empty($shortstat)) {
+    $output .= date("d.m.Y H:i:s") . ' No files t be updated. Lets move on...' . _NL_;
+}
+else {
+    $output .= '<pre>' . $shortstat . '</pre>' . _NL_;
+
+    $output .= date("d.m.Y H:i:s") . ' Attempting to add files.' . _NL_;
+    $git_add = shell_exec("git add --all .");
+    $output .= date("d.m.Y H:i:s") . ' Modified files added.' . _NL_;
+
+    $git_status = shell_exec("git status -s");
+    dump($git_status, "Git Status");
+    $output .= '<pre>' . $git_status . '</pre>' . _NL_;
+
+    $output .= date("d.m.Y H:i:s") . ' Starting to commit files to branch: ' . $branch . '.' . _NL_;
+
+    $output .= date("d.m.Y H:i:s") . ' Generating commit message.';
+    $commit_message = 'Server side commit at ' . date("d.m.Y H:i:s") . _NL_;
+
+    $output .= '<pre>' . $commit_message . '</pre>';
+
+    $output .= date("d.m.Y H:i:s") . ' Attempting to commit.' . _NL_;
+    $commit = shell_exec('git commit -m "' . $commit_message . '"');
+    $output .= '<pre>' . $commit . '</pre>';
+
+    $output .= date("d.m.Y H:i:s") . ' Updated Files committed to branch: ' . $branch . '.' . _NL_;
+}
 
 
-$output .= date("d.m.Y H:i:s") . ' Updated Files committed to branch: ' . $branch . '.' . _NL_;
+
 
 
 
