@@ -69,7 +69,7 @@ $output .= date("d.m.Y H:i:s") . ' Checking for updated files...' . _NL_;
 $shortstat .= shell_exec("git diff --shortstat");
 
 if (empty($shortstat)) {
-    $output .= date("d.m.Y H:i:s") . ' No files t be updated. Lets move on...' . _NL_;
+    $output .= date("d.m.Y H:i:s") . ' No files to be updated. Lets move on...' . _NL_;
 }
 else {
     $output .= '<pre>' . $shortstat . '</pre>' . _NL_;
@@ -93,19 +93,17 @@ else {
     $output .= '<pre>' . $commit . '</pre>';
 
     $output .= date("d.m.Y H:i:s") . ' Updated Files committed to branch: ' . $branch . '.' . _NL_;
+
+    /**
+     * Push the update
+     */
+    $output .= date("d.m.Y H:i:s") . ' Starting push to branch: ' . $branch . '.' . _NL_;
+    $push = shell_exec("git push origin $branch");
+    $output .= date("d.m.Y H:i:s") . ' Completed push to branch: ' . $branch . '.' . _NL_;
 }
 
 
 
-
-
-
-/**
- * Push the update
- */
-$output .= date("d.m.Y H:i:s") . ' Starting push to branch: ' . $branch . '.' . _NL_;
-$push = shell_exec("git push origin $branch");
-$output .= date("d.m.Y H:i:s") . ' Completed push to branch: ' . $branch . '.' . _NL_;
 
 
 /**
