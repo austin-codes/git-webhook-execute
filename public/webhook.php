@@ -96,8 +96,7 @@ else {
  * Push the update
  */
 $output .= date("d.m.Y H:i:s") . ' Starting push to branch: ' . $branch . '.' . _NL_;
-$push = shell_exec("git push origin $branch");
-dump($push);
+// $push = shell_exec("git push origin $branch");
 $output .= date("d.m.Y H:i:s") . ' Completed push to branch: ' . $branch . '.' . _NL_;
 
 /**
