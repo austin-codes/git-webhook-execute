@@ -129,8 +129,14 @@ if (!empty($log)) {
     <head>
         <meta charset="utf-8">
         <title>Git Exec</title>
+        <meta name="googlebot" content="noindex, nofollow, noarchive">
+        <meta name="robots" content="noindex, nofollow, noarchive">
+        <meta name="slurp" content="noindex, nofollow, noarchive">
     </head>
     <body>
         <?php echo $output; ?>
     </body>
 </html>
+
+<?php
+die();
