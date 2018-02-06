@@ -15,13 +15,6 @@ define('_NL_', '<br />');
 
 $branch = shell_exec("git branch | grep \* | cut -d ' ' -f2");
 $branch = preg_replace('/\s+/','',$branch);
-dump($branch);
-
-// $json = file_get_contents('php://input');
-// $data = json_decode($json, true);
-// dump($data);
-// $log = $json;
-
 
 
 /**
@@ -50,8 +43,6 @@ else {
  */
 $output .= date("d.m.Y H:i:s") . ' Starting pull from remote branch: ' . $branch . '.' . _NL_;
 $pull = shell_exec("git pull origin $branch");
-// $pull = preg_replace('/\s+/','',$pull);
-dump($pull, 'Pull');
 
 if (preg_replace('/\s+/','',$pull) == 'Alreadyup-to-date.') {
     $output .= date("d.m.Y H:i:s") . ' Completed pull from remote branch: ' . $branch . '. Nothing to pull.' . _NL_;
@@ -88,7 +79,6 @@ else {
     $output .= date("d.m.Y H:i:s") . ' Modified files added.' . _NL_;
 
     $git_status = shell_exec("git status -s");
-    dump($git_status, "Git Status");
     $output .= '<pre>' . $git_status . '</pre>' . _NL_;
 
     $output .= date("d.m.Y H:i:s") . ' Starting to commit files to branch: ' . $branch . '.' . _NL_;
