@@ -50,8 +50,8 @@ else {
  */
 $output .= date("d.m.Y H:i:s") . ' Starting pull from remote branch: ' . $branch . '.' . _NL_;
 $pull = shell_exec("git pull origin $branch");
-
-dump($pull);
+$pull = preg_replace('/\s+/','',$pull);
+dump($pull, 'Pull');
 $output .= date("d.m.Y H:i:s") . ' Completed pull from remote branch: ' . $branch . '.' . _NL_;
 
 
