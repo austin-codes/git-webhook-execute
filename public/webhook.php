@@ -50,9 +50,17 @@ else {
  */
 $output .= date("d.m.Y H:i:s") . ' Starting pull from remote branch: ' . $branch . '.' . _NL_;
 $pull = shell_exec("git pull origin $branch");
-$pull = preg_replace('/\s+/','',$pull);
+// $pull = preg_replace('/\s+/','',$pull);
 dump($pull, 'Pull');
-$output .= date("d.m.Y H:i:s") . ' Completed pull from remote branch: ' . $branch . '.' . _NL_;
+
+if (preg_replace('/\s+/','',$pull) == 'Alreadyup-to-date.') {
+    $output .= date("d.m.Y H:i:s") . ' Completed pull from remote branch: ' . $branch . '. Nothing to pull.' . _NL_;
+}
+else {
+    $output .= '<pre>' . $pull . '</pre>';
+    $output .= date("d.m.Y H:i:s") . ' Completed pull from remote branch: ' . $branch . '.' . _NL_;
+}
+
 
 
 /**
